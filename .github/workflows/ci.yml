@@ -1,0 +1,15 @@
+name: C++ CI
+on:
+  push:
+    branches: [ main, master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build C++ code
+        run: g++ -o myapp src/main.cpp
+      - name: Run C++ app
+        run: ./myapp
+      - name: Build Docker image
+        run: docker build -t my-cpp-app:test .
